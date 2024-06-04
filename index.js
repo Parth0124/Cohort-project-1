@@ -34,3 +34,5 @@ console.log(data.toString());
  
 //write data in the file.
 var input= fs.writeFileSync("write.txt", "This is the input being encoded into the file.")
+
+const express = require ('express');
