@@ -1,3 +1,15 @@
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`)
+})
+
 //calculate the sum from 1 to 100
 function calculateSum(counter) 
 {
@@ -34,5 +46,3 @@ console.log(data.toString());
  
 //write data in the file.
 var input= fs.writeFileSync("write.txt", "This is the input being encoded into the file.")
-
-const express = require ('express');
