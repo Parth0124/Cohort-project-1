@@ -3,13 +3,20 @@ const app = express();
 const port = 3000;
 
 function handleFirstRequest(req, res) {
-  var calculatedSum = calculateSum(100);
+  var counter=req.query.counter;
+  var calculatedSum = calculateSum(counter);
   console.log(calculatedSum);
   var answer="The sum calculated by the algorithm is " + calculatedSum;
   res.send(answer);
 }
 
+function createUser(req, res)
+{
+  res.send("Hello World!! This is createUser route!");
+}
+
 app.get("/", handleFirstRequest);
+app.post("/createUser", createUser);
 
 function started() {
   console.log(`Example app listening on port ${port}`);
@@ -20,7 +27,7 @@ app.listen(port, started);
 //calculate the sum from 1 to 100
 function calculateSum(counter) {
   var sum = 0;
-  for (var i = 0; i < counter; i++) {
+  for (var i = 0; i <= counter; i++) {
     sum = sum + i;
   }
   return sum;
