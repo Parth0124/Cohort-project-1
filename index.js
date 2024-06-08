@@ -1,16 +1,11 @@
 const express = require("express");
+const bodyParser = require('body-parser'); // External library for parsing and extracting body from postman
 const app = express();
 const port = 3000;
 
-function middleware1(req,res,next)
-{
-  console.log("From middleware1 " + req.headers.counter + "!!!");
-  next();
-}
+app.use(bodyParser.json()); // Returns or adds a middleware that extracts the body.
 
-app.use(middleware1);
-
-//calculate the sum from 1 to 100
+// Calculate the sum from 1 to counter
 function calculateSum(counter) {
   var sum = 0;
   for (var i = 0; i <= counter; i++) {
@@ -20,20 +15,18 @@ function calculateSum(counter) {
 }
 
 function handleFirstRequest(req, res) {
-  console.log(req.headers);
-  var counter=req.headers.counter;
+  console.log(req.body);
+  var counter = req.body.counter;
   var calculatedSum = calculateSum(counter);
-  console.log(calculatedSum);
-  var answer="The sum calculated by the algorithm is " + calculatedSum;
+  console.log(calculatedSum)
+  var answer = "The calculated sum upto " + counter + " is " + calculatedSum;
   res.send(answer);
 }
 
-function createUser(req, res)
-{
-  res.send("Hello World!! This is createUser route!")
+function createUser(req, res) {
+  res.send("Hello World!! This is createUser route!");
 }
 
-// app.get("/handleSum", handleFirstRequest);
 app.post("/handleSum", handleFirstRequest);
 app.post("/createUser", createUser);
 
@@ -42,6 +35,7 @@ function started() {
 }
 
 app.listen(port, started);
+
 
 //reading data from file through two different ways.
 // const fs = require('fs');
