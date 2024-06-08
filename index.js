@@ -2,6 +2,23 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+function middleware1(req,res,next)
+{
+  console.log("From middleware1 " + req.headers.counter + "!!!");
+  next();
+}
+
+app.use(middleware1);
+
+//calculate the sum from 1 to 100
+function calculateSum(counter) {
+  var sum = 0;
+  for (var i = 0; i <= counter; i++) {
+    sum = sum + i;
+  }
+  return sum;
+}
+
 function handleFirstRequest(req, res) {
   console.log(req.headers);
   var counter=req.headers.counter;
@@ -25,15 +42,6 @@ function started() {
 }
 
 app.listen(port, started);
-
-//calculate the sum from 1 to 100
-function calculateSum(counter) {
-  var sum = 0;
-  for (var i = 0; i <= counter; i++) {
-    sum = sum + i;
-  }
-  return sum;
-}
 
 //reading data from file through two different ways.
 // const fs = require('fs');
