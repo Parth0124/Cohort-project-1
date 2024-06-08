@@ -1,5 +1,5 @@
 const express = require("express");
-const bodyParser = require('body-parser'); // External library for parsing and extracting body from postman
+const bodyParser = require("body-parser"); // External library for parsing and extracting body from postman
 const app = express();
 const port = 3000;
 
@@ -17,10 +17,14 @@ function calculateSum(counter) {
 function handleFirstRequest(req, res) {
   console.log(req.body);
   var counter = req.body.counter;
-  var calculatedSum = calculateSum(counter);
-  console.log(calculatedSum)
-  var answer = "The calculated sum upto " + counter + " is " + calculatedSum;
-  res.send(answer);
+  if (counter < 100000) {
+    var calculatedSum = calculateSum(counter);
+    console.log(calculatedSum);
+    var answer = "The calculated sum upto " + counter + " is " + calculatedSum;
+    res.send(answer);
+  } else {
+    res.status(411).send("The humber is too damn big!!");  //function curring. allows us to call multiple functions.
+  }
 }
 
 function createUser(req, res) {
@@ -35,7 +39,6 @@ function started() {
 }
 
 app.listen(port, started);
-
 
 //reading data from file through two different ways.
 // const fs = require('fs');
