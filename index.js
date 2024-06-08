@@ -54,7 +54,6 @@ function createUser(req, res) {
   res.send("Hello World!! This is createUser route!");
 }
 
-
 //use `` and write the html code between them for multiple lined html code or if you want to use "" make sure all of your html code is in a single line.
 function givePage(req, res) {
   res.send(`<!DOCTYPE html>   
