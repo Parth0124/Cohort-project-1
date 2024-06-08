@@ -14,15 +14,26 @@ function calculateSum(counter) {
   return sum;
 }
 
+function calculateMul(counter) {
+  var answer=1;
+  for (var i = 1; i <= counter; i++) 
+  {
+    answer = answer * i;
+  }
+  return answer;
+}
+
 
 function handleFirstRequest(req,res)
 {
   var counter = req.body.counter;
 
   var calculatedSum = calculateSum(counter);
+  var calculatedMul = calculateMul(counter);
 
   var answerObject = {
-    sum: calculatedSum
+    sum: calculatedSum,
+    mul: calculatedMul
   }
 
   res.status(200).send(answerObject);
