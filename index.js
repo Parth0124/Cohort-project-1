@@ -23,7 +23,7 @@ function calculateMul(counter) {
 }
 
 function handleFirstRequest(req, res) {
-  var counter = req.body.counter;
+  var counter = req.query.counter;
 
   var calculatedSum = calculateSum(counter);
   var calculatedMul = calculateMul(counter);
@@ -54,24 +54,24 @@ function createUser(req, res) {
   res.send("Hello World!! This is createUser route!");
 }
 
+//the way to send html to browser...
 //use `` and write the html code between them for multiple lined html code or if you want to use "" make sure all of your html code is in a single line.
-function givePage(req, res) {
-  res.send(`<!DOCTYPE html>   
-  <html lang="en">
-  <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Hello From Parth</title>
-  </head>
-  <body>
-      <i>Hey Everyone!!!</i>
-  </body>
-  </html>`);
-}
+// function givePage(req, res) {
+//   res.send(`<!DOCTYPE html>   
+//   <html lang="en">
+//   <head>
+//       <meta charset="UTF-8">
+//       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+//       <title>Hello From Parth</title>
+//   </head>
+//   <body>
+//       <i>Hey Everyone!!!</i>
+//   </body>
+//   </html>`);
+// }
 
-app.post("/handleSum", handleFirstRequest);
-app.post("/createUser", createUser);
-app.get("/", givePage);
+app.get("/handleSum", handleFirstRequest);
+app.get("/createUser", createUser);
 
 function started() {
   console.log(`Example app listening on port ${port}`);

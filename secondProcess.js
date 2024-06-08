@@ -1,5 +1,5 @@
 var sendObj = {
-    method: "POST"
+    method: "GET"
 }
 
 function callBackFn(result)
@@ -7,4 +7,4 @@ function callBackFn(result)
     console.log(result)
 } 
 
-fetch("http://localhost:3000", sendObj).then(callBackFn);
+fetch("http://localhost:3000/handleSum?counter=10", sendObj).then(callBackFn);
