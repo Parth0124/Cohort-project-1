@@ -3,7 +3,8 @@ const app = express();
 const port = 3000;
 
 function handleFirstRequest(req, res) {
-  var counter=req.query.counter;
+  console.log(req.headers);
+  var counter=req.headers.counter;
   var calculatedSum = calculateSum(counter);
   console.log(calculatedSum);
   var answer="The sum calculated by the algorithm is " + calculatedSum;
@@ -12,10 +13,11 @@ function handleFirstRequest(req, res) {
 
 function createUser(req, res)
 {
-  res.send("Hello World!! This is createUser route!");
+  res.send("Hello World!! This is createUser route!")
 }
 
-app.get("/", handleFirstRequest);
+// app.get("/handleSum", handleFirstRequest);
+app.post("/handleSum", handleFirstRequest);
 app.post("/createUser", createUser);
 
 function started() {
