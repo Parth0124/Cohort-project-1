@@ -14,18 +14,34 @@ function calculateSum(counter) {
   return sum;
 }
 
-function handleFirstRequest(req, res) {
-  console.log(req.body);
+
+function handleFirstRequest(req,res)
+{
   var counter = req.body.counter;
-  if (counter < 100000) {
-    var calculatedSum = calculateSum(counter);
-    console.log(calculatedSum);
-    var answer = "The calculated sum upto " + counter + " is " + calculatedSum;
-    res.send(answer);
-  } else {
-    res.status(411).send("The humber is too damn big!!");  //function curring. allows us to call multiple functions.
+
+  var calculatedSum = calculateSum(counter);
+
+  var answerObject = {
+    sum: calculatedSum
   }
+
+  res.status(200).send(answerObject);
 }
+
+
+//handleFirst Request with status code simplification
+// function handleFirstRequest(req, res) {
+//   console.log(req.body);
+//   var counter = req.body.counter;
+//   if (counter < 100000) {
+//     var calculatedSum = calculateSum(counter);
+//     console.log(calculatedSum);
+//     var answer = "The calculated sum upto " + counter + " is " + calculatedSum;
+//     res.send(answer);
+//   } else {
+//     res.status(411).send("The humber is too damn big!!");  //function curring. allows us to call multiple function
+//   }
+// }
 
 function createUser(req, res) {
   res.send("Hello World!! This is createUser route!");
