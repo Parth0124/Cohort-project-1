@@ -9,4 +9,8 @@ let accountCredentials = jwt.sign({
     username: "randomkiller456",
     password: "22bcs080"
 }, secret);
-console.log(accountCredentials)
+console.log(accountCredentials)  //encrypted the object of accountCredentials containing passwords and username.
+
+jwt.verify(ans, secret, (err, originalString) => {
+    console.log("The initial string sent was " + originalString )
+})
