@@ -23,7 +23,8 @@ function calculateMul(counter) {
 }
 
 function handleFirstRequest(req, res) {
-  var counter = req.query.counter;
+  var counter = req.body.counter; //for parsing the counter from body from postman
+  // for recieving the counter from headers from postman, use req.headers.counter and for query use req.query.counter
 
   var calculatedSum = calculateSum(counter);
   var calculatedMul = calculateMul(counter);
