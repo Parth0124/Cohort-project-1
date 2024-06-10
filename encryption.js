@@ -12,5 +12,23 @@ let accountCredentials = jwt.sign({
 console.log(accountCredentials)  //encrypted the object of accountCredentials containing passwords and username.
 
 jwt.verify(ans, secret, (err, originalString) => {
-    console.log("The initial string sent was " + originalString )
+    if(err)
+        {
+            console.log("There was error decrypting your original string")
+        }
+        else
+        {
+            console.log("The initial string sent was " + originalString )
+        }
+})
+
+jwt.verify(accountCredentials, secret, (err, userDetails) => {
+    if(err)
+    {
+        console.log("Canot get the user credentials right now. Please try later.")
+    }
+    else
+    {
+        console.log("The username and password of the user are " + userDetails.username + " & " + userDetails.password + " respectively. ")
+    }
 })
